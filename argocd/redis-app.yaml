@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis-app
+  namespace: argocd
+spec:
+  project: poc
+  source:
+    repoURL:  https://github.com/JaimeHenaoChallange/backend.git
+    targetRevision: HEAD
+    path: helm-charts/redis
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: backend
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

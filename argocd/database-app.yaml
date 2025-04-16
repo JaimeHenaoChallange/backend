@@ -4,7 +4,7 @@ metadata:
   name: database-app
   namespace: argocd
 spec:
-  project: default
+  project: poc
   source:
     repoURL: https://github.com/JaimeHenaoChallange/backend.git
     targetRevision: HEAD
