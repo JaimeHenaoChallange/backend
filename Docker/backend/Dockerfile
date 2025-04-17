@@ -1,23 +1,20 @@
-# Usa una imagen base de Node.js para el backend
-FROM node:18
+# Usa una imagen base de Python
+FROM python:3.10-slim
 
 # Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia solo los archivos necesarios para instalar dependencias
-COPY package*.json ./
+# Copia los archivos necesarios para instalar dependencias
+COPY requirements.txt ./
 
 # Instala las dependencias
-RUN npm install --production
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copia el resto de los archivos del backend
 COPY . .
-
-# Establece las variables de entorno necesarias
-ENV NODE_ENV=production
 
 # Expone el puerto del backend
 EXPOSE 8080
 
 # Comando para iniciar el backend
-CMD ["npm", "start"]
+CMD ["python", "app.py"]
