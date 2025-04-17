@@ -4,12 +4,17 @@ FROM node:18
 # Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia los archivos del backend
+# Copia solo los archivos necesarios para instalar dependencias
 COPY package*.json ./
-COPY . .
 
 # Instala las dependencias
-RUN npm install
+RUN npm install --production
+
+# Copia el resto de los archivos del backend
+COPY . .
+
+# Establece las variables de entorno necesarias
+ENV NODE_ENV=production
 
 # Expone el puerto del backend
 EXPOSE 8080

@@ -1,7 +1,21 @@
 replicaCount: 1
+
 image:
   repository: jaimehenao8126/backend
   tag: latest
+  pullPolicy: IfNotPresent
+
 service:
   type: ClusterIP
   port: 8080
+
+ingress:
+  enabled: false
+  className: nginx
+  annotations: {}
+  hosts:
+    - host: backend.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
