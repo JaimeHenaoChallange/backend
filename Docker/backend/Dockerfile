@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expone el puerto del backend
-EXPOSE 8080
+EXPOSE 8081
 
 # Comando para iniciar el backend
-CMD ["python", "app.py"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8081", "app:app"]
