@@ -8,7 +8,7 @@ image:
 service:
   type: NodePort
   port: 8081
-  nodePort: 30131
+  nodePort: 30132
 
 ingress:
   enabled: false
