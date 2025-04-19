@@ -1,7 +1,9 @@
 replicaCount: 1
+
 image:
   repository: jaimehenao8126/database
   tag: latest
+
 service:
   type: ClusterIP
   port: 5432
