@@ -8,7 +8,7 @@ image:
 service:
   type: NodePort
   port: 8081
-  nodePort: 30132
+  nodePort: 30133  # Cambia este valor a un puerto no utilizado
 
 ingress:
   enabled: false

@@ -11,5 +11,5 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: {{ .Values.service.port }}
-      nodePort: 30131
+      nodePort: {{ .Values.service.nodePort }}  # Asegúrate de que use el valor de values.yaml
   type: NodePort
