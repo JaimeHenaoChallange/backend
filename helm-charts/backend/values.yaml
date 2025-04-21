@@ -21,3 +21,8 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls: []
+
+kuma:
+  enabled: true
+  service: backend # Etiqueta para Kuma
+

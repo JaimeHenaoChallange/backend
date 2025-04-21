@@ -1,4 +1,4 @@
-replicaCount: 2
+replicaCount: 1
 
 image:
   repository: jaimehenao8126/database
@@ -36,3 +36,7 @@ readinessProbe:
     port: 5432
   initialDelaySeconds: 5
   periodSeconds: 5
+
+kuma:
+  enabled: true
+  service: database # Etiqueta para Kuma

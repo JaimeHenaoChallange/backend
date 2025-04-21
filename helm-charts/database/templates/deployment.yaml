@@ -1,45 +1,12 @@
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: {{ .Release.Name }}-backend
-#   labels:
-#     app: {{ .Chart.Name }}
-# spec:
-#   replicas: {{ .Values.replicaCount }}
-#   selector:
-#     matchLabels:
-#       app: {{ .Chart.Name }}
-#   template:
-#     metadata:
-#       labels:
-#         app: {{ .Chart.Name }}
-#     spec:
-#       containers:
-#         - name: backend
-#           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-#           ports:
-#             - containerPort: {{ .Values.service.port }}
-#           readinessProbe:
-#             httpGet:
-#               path: /
-#               port: {{ .Values.service.port }}
-#             initialDelaySeconds: 5
-#             periodSeconds: 10
-#           livenessProbe:
-#             httpGet:
-#               path: /
-#               port: {{ .Values.service.port }}
-#             initialDelaySeconds: 15
-#             periodSeconds: 20
-
-# ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-database
+  name: {{ .Release.Name }}
   labels:
     app: {{ .Chart.Name }}
+    {{- if .Values.kuma.enabled }}
+    kuma.io/service: {{ .Values.kuma.service }}
+    {{- end }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -49,9 +16,13 @@ spec:
     metadata:
       labels:
         app: {{ .Chart.Name }}
+        {{- if .Values.kuma.enabled }}
+        kuma.io/service: {{ .Values.kuma.service }}
+        {{- end }}
     spec:
       containers:
-        - name: database
+        - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.port }}

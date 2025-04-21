@@ -9,6 +9,10 @@ service:
   type: ClusterIP
   port: 6379
 
+kuma:
+  enabled: true
+  service: redis # Etiqueta para Kuma
+
 resources:
   limits:
     cpu: "500m"
