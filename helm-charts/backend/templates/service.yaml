@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-backend
+  name: {{ .Release.Name }}
   labels:
     app: {{ .Chart.Name }}
 spec:
@@ -11,5 +11,5 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: {{ .Values.service.port }}
-      nodePort: {{ .Values.service.nodePort }}  # Asegúrate de que use el valor de values.yaml
+      nodePort: {{ .Values.service.nodePort }}
   type: NodePort
